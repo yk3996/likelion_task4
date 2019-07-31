@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<main role="main">
+  <section id="top" class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Blog Project</h1>
+      <p class="lead text-muted">멋쟁이 사자처럼 3차 과제 - 블로그 제작하기</p>
+      <p>
+        <a href="#collected_img" class="btn btn-primary my-2">게시판 목록</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary my-2">전체 글</a>
+      </p>
+    </div>
+  </section>
+
+  <div id="collected_img" class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for portfolio in portfolios.all %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img src="{{ portfolio.image.url }}" height=400>
+              <div class="card-body">
+                <p class="card-text">{{portfolio.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'home' %}">enter</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#top">Back to top</a>
+    </p>
+    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+{% endblock %}
+</body>
+</html>
